@@ -1,10 +1,10 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 
 // Load environment variables
 dotenv.config();
-
 // Connect to the database
 connectDB();
 
@@ -17,6 +17,7 @@ const corsOptions ={
     credentials:true,           
     optionSuccessStatus:200
 }
+app.use(cookieParser());
 app.use(cors(corsOptions));
 // Middleware
 app.use(express.json()); // Body parser

@@ -31,12 +31,17 @@ const TaskList = () => {
   const fetchTasks = async () => {
     setLoading(true);
     try {
+       const token = localStorage.getItem('token');
+
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/tasks`,
-        {
-          params: { page: currentPage, limit },
-        }
-      );
+      `${process.env.REACT_APP_BACKEND_URL}/tasks`,
+      {
+        params: { page: currentPage, limit },
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token in the header
+        },
+      }
+    );
       setTasks(response.data.tasks);
       setTotalPages(response.data.totalPages);
       setLoading(false);
@@ -58,7 +63,7 @@ const TaskList = () => {
       toast.error("Task deleted");
       setLoading(false);
     } catch (error) {
-      console.error("Error deleting task:", error);
+      // console.error("Error deleting task:", error);
       toast.error("Error deleting task. Please try again.");
       setLoading(false);
     }
@@ -140,7 +145,7 @@ const TaskList = () => {
           <div className="mb-2 md:mb-0">
             <button
               onClick={() => openModal()}
-              className=" rounded-lg px-4 py-2 border dark:border-gray-600 flex items-center px-4 py-2 font-semibold rounded-lg shadow-md
+              className=" rounded-lg px-4 py-2 border  transition-all duration-300 transform dark:border-gray-600 flex items-center px-4 py-2 font-semibold rounded-lg shadow-md
          bg-gray-600 text-white hover:bg-gray-700
          dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
             >

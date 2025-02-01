@@ -41,20 +41,27 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
       status: StatusEle.current.value,
     };
 
+    const token = localStorage.getItem("token"); // Get the token from localStorage or cookies
+    const headers = {
+      Authorization: `Bearer ${token}`, // Add token to the Authorization header
+    };
+    
     try {
       if (task) {
         // Update task
+        // Ensure the token is included in the request headers
         await axios.put(
           `${process.env.REACT_APP_BACKEND_URL}/tasks/${task._id}`,
-          taskData
+          taskData,{headers}
         );
         toast.success("Task updated successfully");
       } else {
         // Create new task
         await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/tasks`,
-          taskData
+          taskData,{headers}
         );
+        
         toast.success("Task created successfully");
       }
       onRefresh();

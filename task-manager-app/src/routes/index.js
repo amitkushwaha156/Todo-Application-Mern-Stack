@@ -23,13 +23,9 @@ const router = createBrowserRouter([
         path: "login",
         element:<AuthLayout><LoginPage /></AuthLayout> ,
       },
-      
-   
-
       {
         path: "/",
         element:  <TaskList />,
-       
        
       },
     ],

@@ -1,9 +1,10 @@
 const express = require('express'); 
 const Task = require('../models/TaskModel');  
+const authenticateUser = require('../helper/authenticateUser');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/',authenticateUser, async (req, res) => {
   const { title, description, dueDate, status } = req.body;  
 
   try {
@@ -58,7 +59,7 @@ router.get('/:id', async (req, res) => {
     }
   });
   
-  router.put('/:id', async (req, res) => {
+  router.put('/:id',authenticateUser, async (req, res) => {
     console.log(req.params.id);
     const { title, description ,dueDate,status} = req.body; 
   
@@ -85,7 +86,7 @@ router.get('/:id', async (req, res) => {
     }
   });
   
-  router.get('/', async (req, res) => {
+  router.get('/',authenticateUser, async (req, res) => {
     const { page, limit } = req.query; // Default to page 1 and limit 10
   
   
