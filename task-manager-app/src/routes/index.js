@@ -3,7 +3,7 @@ import App from "../App";
 import RegisterPage from "../pages/RegisterPage";
 
 
-import AuthLayout from "../Layout";
+// import AuthLayout from "../Layout";
 import LoginPage from "../pages/LoginPage";
 import TaskList from "../component/TaskList";
 
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "register",
-        element:<AuthLayout><RegisterPage /></AuthLayout> ,
+        element:<RegisterPage /> ,
       },
       {
         path: "login",
-        element:<AuthLayout><LoginPage /></AuthLayout> ,
+        element:<LoginPage /> ,
       },
       {
         path: "/",

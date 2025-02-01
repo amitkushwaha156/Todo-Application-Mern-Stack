@@ -45,30 +45,53 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
     const headers = {
       Authorization: `Bearer ${token}`, // Add token to the Authorization header
     };
-    
+
     try {
+     
       if (task) {
         // Update task
-        // Ensure the token is included in the request headers
-        await axios.put(
+         await axios.put(
           `${process.env.REACT_APP_BACKEND_URL}/tasks/${task._id}`,
-          taskData,{headers}
+          taskData,
+          { headers }
         );
         toast.success("Task updated successfully");
       } else {
         // Create new task
-        await axios.post(
+         await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/tasks`,
-          taskData,{headers}
+          taskData,
+          { headers }
         );
-        
         toast.success("Task created successfully");
       }
+  
+      // After success, refresh and close modal
       onRefresh();
       onClose();
     } catch (error) {
-      console.error("Error saving task:", error);
-      toast.error("Failed to save task");
+      // Error handling for both create and update
+      // toast.error("Failed to save task");x
+  
+      if (error.response) {
+        if (error.response.data && error.response.data.errors) {
+          const errors = error.response.data.errors;
+          Object.values(errors).forEach((err) => {
+          
+            if (err.message) {
+              toast.error(err.message);
+            } else {
+              toast.error(err);
+            }
+          });
+        } else {
+        
+          toast.error(error.response.data.msg || "Server error occurred");
+        }
+      } else {
+        // If no response from the server (network issues, server is down, etc.)
+        toast.error("Network error. Please try again.");
+      }
     }
   };
 
@@ -78,7 +101,7 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
         <h3 className="text-xl dark:text-gray-500 font-semibold mb-4">
           {task ? "Edit Task" : "Create Task"}
         </h3>
-      <hr/>
+        <hr />
         <form onSubmit={handleSubmit}>
           <div className="mb-4 mt-2">
             <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -91,7 +114,6 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
          dark:focus:ring-blue-400"
               placeholder="Task Title"
-              required
             />
           </div>
           <div className="mb-4">
@@ -99,7 +121,6 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
               Description
             </label>
             <textarea
-              required
               rows="4"
               ref={DescriptionEle}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
@@ -118,7 +139,6 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
          dark:focus:ring-blue-400"
-              required
             />
           </div>
           <div className="mb-4">
@@ -136,7 +156,7 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
               <option value="Complete">Complete</option>
             </select>
           </div>
-          <hr/>
+          <hr />
           <div className="flex mt-2">
             <button
               type="submit"

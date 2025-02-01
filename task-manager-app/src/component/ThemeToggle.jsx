@@ -2,7 +2,7 @@ import { HiMoon, HiSun } from "react-icons/hi";
 import { useEffect, useState } from "react";
 
 
-const ColorModeButton = () => {
+const ThemeToggle = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
   
     useEffect(() => {
@@ -43,4 +43,4 @@ const ColorModeButton = () => {
     );
   };
 
-export default  ColorModeButton ;
+export default  ThemeToggle ;

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../redux/UserSlice";
-import ColorModeButton from "./ColorModeButton";
+import ThemeToggle from "./ThemeToggle";
 import { AiOutlineLogout } from "react-icons/ai";
 
 const NavBar = () => {
@@ -56,7 +56,7 @@ const NavBar = () => {
             </div>
 
               <div className="flex space-x-4">
-                <ColorModeButton/>
+                <ThemeToggle/>
                 <button
                   onClick={handleLogout}
                   className="text-gray-900   dark:text-gray-100 px-3 py-2 rounded-md text-sm font-medium"

@@ -46,7 +46,8 @@ const TaskList = () => {
       setTotalPages(response.data.totalPages);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching tasks:", error);
+      // console.error("Error fetching tasks:", error);
+      
       toast.error("Error fetching tasks. Please try again.");
       setLoading(false);
     }
@@ -134,7 +135,7 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="bg-white dark:bg-black container mx-auto p-4">
+      <div className=" container mx-auto p-4">
         <NavBar />
         <hr className="dark:text-gray-600" />
         <h1 className="text-2xl dark:text-white font-bold text-center my-4">
