@@ -1,6 +1,6 @@
-const userModel = require('../models/userModel');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const userModel = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 async function UserLogin(req, res) {
   try {
@@ -9,7 +9,7 @@ async function UserLogin(req, res) {
     // Validate email and password
     if (!email || !password) {
       return res.status(400).json({
-        message: 'Please provide both email and password',
+        message: "Please provide both email and password",
         error: true,
       });
     }
@@ -20,7 +20,7 @@ async function UserLogin(req, res) {
     // Check if user exists
     if (!user) {
       return res.status(404).json({
-        message: 'User not found',
+        message: "User not found",
         error: true,
       });
     }
@@ -30,7 +30,7 @@ async function UserLogin(req, res) {
 
     if (!matchPassword) {
       return res.status(400).json({
-        message: 'Invalid password',
+        message: "Invalid password",
         error: true,
       });
     }
@@ -42,30 +42,27 @@ async function UserLogin(req, res) {
     };
 
     const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {
-      expiresIn: '1d',
+      expiresIn: "1d",
     });
 
     // Configure cookie options
     const cookiesOption = {
       httpOnly: true, // Prevent access to cookies via JavaScript
-      secure: process.env.NODE_ENV === 'production', // Secure flag in production
-      sameSite: 'Strict', // Optional, depending on your requirements
+      secure: process.env.NODE_ENV === "production", // Secure flag in production
+      sameSite: "Strict", // Optional, depending on your requirements
     };
 
     // Send the token in a cookie and respond
-    return res
-      .cookie('token', token, cookiesOption)
-      .status(200)
-      .json({
-        message: 'Login successful',
-        token: token, // Optionally return the token
-        success: true,
-        data:user
-      });
+    return res.cookie("token", token, cookiesOption).status(200).json({
+      message: "Login successful",
+      token: token, // Optionally return the token
+      success: true,
+      data: user,
+    });
   } catch (error) {
     console.error(error); // Log the error for debugging
     return res.status(500).json({
-      message: 'Server error',
+      message: "Server error",
       error: error.message,
     });
   }

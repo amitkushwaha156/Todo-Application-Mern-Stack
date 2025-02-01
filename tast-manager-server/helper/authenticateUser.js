@@ -1,10 +1,11 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const authenticateUser = (req, res, next) => {
-  const token = req.cookies.token || req.header('Authorization')?.replace('Bearer ', ''); // Optional chaining
-  //console.log("Token received:", token); 
+  const token =
+    req.cookies.token || req.header("Authorization")?.replace("Bearer ", ""); // Optional chaining
+  //console.log("Token received:", token);
   if (!token) {
-    return res.status(401).json({ message: 'No token, authorization denied' });
+    return res.status(401).json({ message: "No token, authorization denied" });
   }
 
   try {
@@ -13,7 +14,7 @@ const authenticateUser = (req, res, next) => {
     req.user = decoded; // Attach user data to the request object
     next(); // Continue to the next middleware or route handler
   } catch (err) {
-    return res.status(401).json({ message: 'Token is not valid' });
+    return res.status(401).json({ message: "Token is not valid" });
   }
 };
 

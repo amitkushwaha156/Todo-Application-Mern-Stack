@@ -47,8 +47,8 @@ const TaskList = () => {
       setLoading(false);
     } catch (error) {
       // console.error("Error fetching tasks:", error);
-
-      toast.error("Error fetching tasks. Please try again.");
+console.log(error);
+      toast.error("Please Login for tasks fetching ");
       setLoading(false);
     }
   };
@@ -235,7 +235,7 @@ const TaskList = () => {
                       key={task._id}
                       className="bg-white border border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
-                      <td className="px-4 py-2 border">{index + 1}</td>
+                      <td className="px-4 py-2 border">{(currentPage - 1) * limit + index + 1}</td>
                       <td className="px-4 py-4 border font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {task.title}
                       </td>
