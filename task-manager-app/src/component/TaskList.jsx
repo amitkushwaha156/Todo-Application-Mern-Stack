@@ -31,23 +31,23 @@ const TaskList = () => {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-       const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
 
       const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/tasks`,
-      {
-        params: { page: currentPage, limit },
-        headers: {
-          Authorization: `Bearer ${token}`, // Include the token in the header
-        },
-      }
-    );
+        `${process.env.REACT_APP_BACKEND_URL}/tasks`,
+        {
+          params: { page: currentPage, limit },
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the header
+          },
+        }
+      );
       setTasks(response.data.tasks);
       setTotalPages(response.data.totalPages);
       setLoading(false);
     } catch (error) {
       // console.error("Error fetching tasks:", error);
-      
+
       toast.error("Error fetching tasks. Please try again.");
       setLoading(false);
     }
@@ -155,9 +155,28 @@ const TaskList = () => {
           </div>
 
           <div className="mb-2 md:mb-0 w-full md:w-1/3">
+            <div className="relative">
+              <div className="absolute inset-y-5 rtl:inset-r-0 start-0 flex items-center px-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+            </div>
             <input
               type="text"
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
+              className="w-full p-2 px-8 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
          dark:focus:ring-blue-400"
               placeholder="Search by title or description"
@@ -197,26 +216,33 @@ const TaskList = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full dark:bg-black dark:text-white shadow-md rounded-lg text-center">
-              <thead className="bg-gray-200 dark:bg-gray-500 ">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th className="px-4 py-2 border">SN</th>
-                  <th className="px-4 py-2 border">Title</th>
-                  <th className="px-4 py-2 border">Description</th>
-                  <th className="px-4 py-2 border">Due Date</th>
-                  <th className="px-4 py-2 border">Status</th>
-                  <th className="px-4 py-2 border">Action</th>
+                  <th className="px-4 py-3 border">SN</th>
+                  <th className="px-4 py-3 border">Title</th>
+                  <th className="px-4 py-3 border">Description</th>
+                  <th className="px-4 py-3 border">Due Date</th>
+                  <th className="px-4 py-3 border">Status</th>
+                  <th className="px-4 py-3 border">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTasks.length > 0 ? (
                   filteredTasks.map((task, index) => (
-                    <tr key={task._id}>
+                    <tr
+                      key={task._id}
+                      className="bg-white border border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
                       <td className="px-4 py-2 border">{index + 1}</td>
-                      <td className="px-4 py-2 border">{task.title}</td>
-                      <td className="px-4 py-2 border">{task.description}</td>
-                      <td className="px-4 py-2 border">
+                      <td className="px-4 py-4 border font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {task.title}
+                      </td>
+                      <td className="px-4 py-2 border text-gray-700 dark:text-gray-400">
+                        {task.description}
+                      </td>
+                      <td className="px-4 py-2 border text-gray-700 dark:text-gray-400">
                         {moment(task.dueDate).format("Do MMM YY")}
                       </td>
                       <td

@@ -3,17 +3,17 @@ const mongoose = require('mongoose');
 const TaskSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: [true, "Title is required"], // Custom error message
-    trim: true,  // Automatically trims whitespace
-    minlength: [3, "Title should have at least 3 characters"], // Minimum length validation
-    maxlength: [100, "Title should not exceed 100 characters"], // Maximum length validation
+    required: [true, "Title is required"],
+    trim: true,  
+    minlength: [3, "Title should have at least 3 characters"], 
+    maxlength: [100, "Title should not exceed 100 characters"], 
    
   },
   description: {
     type: String,
     required: [true, "Description is required"],
-    trim: true,  // Automatically trims whitespace
-    minlength: [10, "Description should have at least 10 characters"], // Description length validation
+    trim: true,  
+    minlength: [10, "Description should have at least 10 characters"], 
     
   },
   dueDate: {
