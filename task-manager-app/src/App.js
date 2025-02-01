@@ -6,9 +6,9 @@ function App() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Set visible to true after the component mounts (after the page load)
+  
     setVisible(true);
-  }, []); // Empty dependency array means this effect runs only once after mount
+  }, []); 
 
   return (
     <div className={`transition-opacity duration-700 ease-in-out ${visible ? 'opacity-100' : 'opacity-0'}`}>

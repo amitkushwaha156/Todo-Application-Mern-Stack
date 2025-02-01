@@ -157,7 +157,7 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
             </select>
           </div>
           <hr />
-          <div className="flex mt-2">
+          <div className="mt-6 flex justify-end">
             <button
               type="submit"
               className="px-4 py-2 font-semibold rounded-lg shadow-md
