@@ -43,8 +43,10 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="border border-gray-300 dark:border-gray-600  bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-gray-500 text-center mb-6">Sign Up</h2>
+      <div className="border border-gray-300 dark:border-gray-600  p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h2 className="text-2xl font-bold text-gray-500 text-center mb-2">Sign Up</h2>
+        <hr className="border-gray-300 dark:border-gray-800 mb-6" />
+
         <Formik
           initialValues={{ name: "", email: "", password: "" }}
           validationSchema={validationSchema}
@@ -53,8 +55,8 @@ const RegisterPage = () => {
           {({ isSubmitting }) => (
             <Form>
               {/* Name Input */}
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-sm text-gray-700">
+              <div className="my-4">
+                <label htmlFor="name" className="block text-sm text-gray-700  dark:text-gray-600 mb-1">
                   Name
                 </label>
                 <Field
@@ -62,7 +64,7 @@ const RegisterPage = () => {
                   name="name"
                   type="text"
                   className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
-         bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
+         bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-600 mb-1
          dark:focus:ring-blue-400"
                   placeholder="Enter your name"
                 />
@@ -71,7 +73,7 @@ const RegisterPage = () => {
 
               {/* Email Input */}
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm text-gray-700">
+                <label htmlFor="email" className="block text-sm text-gray-700  dark:text-gray-600 mb-1">
                   Email Address
                 </label>
                 <Field
@@ -88,7 +90,7 @@ const RegisterPage = () => {
 
               {/* Password Input */}
               <div className="mb-6">
-                <label htmlFor="password" className="block text-sm text-gray-700">
+                <label htmlFor="password" className="block text-sm text-gray-700  dark:text-white">
                   Password
                 </label>
                 <Field
@@ -102,11 +104,12 @@ const RegisterPage = () => {
                 />
                 <ErrorMessage name="password" component="div" className="text-red-500 text-xs mt-1" />
               </div>
+         
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className={`w-full p-2 rounded-md mt-4 text-white ${isSubmitting ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"}`}
+                className={`w-full p-2 rounded-md mt-4  dark:bg-gray-600 dark:text-white text-white ${isSubmitting ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"}`}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Signing Up..." : "Sign Up"}

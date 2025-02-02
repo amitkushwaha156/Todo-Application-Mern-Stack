@@ -27,7 +27,7 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
       TitleEle.current.value = "";
       DescriptionEle.current.value = "";
       dueDateEle.current.value = "";
-      StatusEle.current.value = "Pending";
+      StatusEle.current.value = "select";
     }
   }, [task]);
 
@@ -101,7 +101,8 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
         <h3 className="text-xl dark:text-gray-500 font-semibold mb-4">
           {task ? "Edit Task" : "Create Task"}
         </h3>
-        <hr />
+        <hr className="border-gray-300 dark:border-gray-800" />
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4 mt-2">
             <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -138,7 +139,7 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
               ref={dueDateEle}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
-         dark:focus:ring-blue-400"
+         dark:focus:ring-blue-400 cursor-pointer"
             />
           </div>
           <div className="mb-4">
@@ -147,16 +148,20 @@ const AddEditTask = ({ task, onClose, onRefresh }) => {
             </label>
             <select
               ref={StatusEle}
+             
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
          dark:focus:ring-blue-400"
             >
+              
+              <option value="select">Select status</option>
               <option value="Pending">Pending</option>
               <option value="In Progress">In Progress</option>
               <option value="Complete">Complete</option>
             </select>
           </div>
-          <hr />
+          <hr className="border-gray-300 dark:border-gray-800" />
+
           <div className="mt-6 flex justify-end">
             <button
               type="submit"

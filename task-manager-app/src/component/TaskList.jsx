@@ -135,9 +135,10 @@ console.log(error);
 
   return (
     <>
-      <div className=" container mx-auto p-4">
         <NavBar />
-        <hr className="dark:text-gray-600" />
+      <div className=" container mx-auto px-4">
+      <hr className="border-gray-300 dark:border-gray-800" />
+
         <h1 className="text-2xl dark:text-white font-bold text-center my-4">
           Task List
         </h1>
@@ -190,7 +191,7 @@ console.log(error);
               onChange={(e) => setStatusFilter(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
-         dark:focus:ring-blue-400"
+         dark:focus:ring-blue-400 cursor-pointer"
             >
               <option value="All">All</option>
               <option value="Complete">Complete</option>
@@ -218,14 +219,14 @@ console.log(error);
         ) : (
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700  dark:text-gray-400">
                 <tr>
-                  <th className="px-4 py-3 border">SN</th>
-                  <th className="px-4 py-3 border">Title</th>
-                  <th className="px-4 py-3 border">Description</th>
-                  <th className="px-4 py-3 border">Due Date</th>
-                  <th className="px-4 py-3 border">Status</th>
-                  <th className="px-4 py-3 border">Action</th>
+                  <th className="px-4 py-3 border dark:border-gray-600">SN</th>
+                  <th className="px-4 py-3 border dark:border-gray-600">Title</th>
+                  <th className="px-4 py-3 border dark:border-gray-600">Description</th>
+                  <th className="px-4 py-3 border dark:border-gray-600">Due Date</th>
+                  <th className="px-4 py-3 border dark:border-gray-600">Status</th>
+                  <th className="px-4 py-3 border dark:border-gray-600">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -233,20 +234,20 @@ console.log(error);
                   filteredTasks.map((task, index) => (
                     <tr
                       key={task._id}
-                      className="bg-white border border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      className="bg-white border border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200  hover:bg-gray-50 dark:hover:bg-gray-600 shadow-sm hover:shadow-lg transition-shadow duration-300"
                     >
-                      <td className="px-4 py-2 border">{(currentPage - 1) * limit + index + 1}</td>
-                      <td className="px-4 py-4 border font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <td className="px-4 py-2 border dark:border-gray-600">{(currentPage - 1) * limit + index + 1}</td>
+                      <td className="px-4 py-4 border dark:border-gray-600 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {task.title}
                       </td>
-                      <td className="px-4 py-2 border text-gray-700 dark:text-gray-400">
+                      <td className="px-4 py-2 border dark:border-gray-600 text-gray-700 dark:text-gray-400">
                         {task.description}
                       </td>
-                      <td className="px-4 py-2 border text-gray-700 dark:text-gray-400">
+                      <td className="px-4 py-2 border dark:border-gray-600 text-gray-700 dark:text-gray-400">
                         {moment(task.dueDate).format("Do MMM YY")}
                       </td>
                       <td
-                        className={`px-4 py-2 border ${
+                        className={`px-4 py-2 border dark:border-gray-600 ${
                           task.status === "Complete"
                             ? "text-green-700 font-bold"
                             : ""
@@ -262,23 +263,23 @@ console.log(error);
                       >
                         {task.status}
                       </td>
-                      <td className="px-4 py-2 border">
+                      <td className="px-4 py-2 border dark:border-gray-600">
                         <button
                           onClick={() => openModal(task)}
-                          className="bg-blue-500 dark:text-blue-700 border  dark:border-blue-600   dark:bg-black border hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mx-1"
-                        >
+                          className="bg-blue-500 dark:text-blue-700 border  dark:border-blue-700   dark:bg-black border hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mx-1"
+                          title="Edit Task" >
                           <AiFillEdit />
                         </button>
                         <button
                           onClick={() => DeleteTask(task._id)}
-                          className="bg-red-500 dark:text-red-700 border dark:border-red-600 dark:bg-black hover:bg-red-700 text-white font-bold py-1 px-2 rounded mx-1"
-                        >
+                          className="bg-red-500 dark:text-red-700 border dark:border-red-700 dark:bg-black hover:bg-red-700 text-white font-bold py-2 px-2 rounded mx-1"
+                          title="Delete Task" >
                           <AiFillDelete />
                         </button>
                         <button
                           onClick={() => openViewModal(task)}
-                          className="bg-green-500 dark:bg-black border dark:border-green-600  dark:text-green-700 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mx-1"
-                        >
+                          className="bg-green-500 dark:bg-black border dark:border-green-700  dark:text-green-700 hover:bg-green-700 text-white font-bold py-2 px-2 rounded mx-1"
+                          title="View Task"  >
                           <AiOutlineInfoCircle />
                         </button>
                       </td>
@@ -302,16 +303,14 @@ console.log(error);
         {/* Pagination */}
         <div className="flex justify-between mt-4">
           <div className="mb-4">
-            <label className="mr-2 dark:text-white">Per page:</label>
+            <label className="mr-2  dark:text-gray-600">Per page :</label>
             <select
               value={limit}
               onChange={(e) => {
                 setLimit(Number(e.target.value));
                 setCurrentPage(1); // Reset to first page when limit changes
               }}
-              className="border px-2 py-1  border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
-         bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
-         dark:focus:ring-blue-400"
+              className="px-3 py-1 dark:bg-black text-gray-500 bg-white dark:border-gray-600 border rounded cursor-pointer"
             >
               <option value={10}>10</option>
               <option value={20}>20</option>
@@ -327,7 +326,7 @@ console.log(error);
                     setCurrentPage((prev) => Math.max(prev - 1, 1))
                   }
                   disabled={currentPage === 1}
-                  className="px-3 py-1 dark:bg-black text-gray-500 bg-white border rounded-l-md"
+                  className="px-3 py-1 dark:border-gray-600 dark:bg-black text-gray-500 bg-white border rounded-l-md"
                 >
                   Previous
                 </button>
@@ -336,7 +335,7 @@ console.log(error);
                 <li key={index}>
                   <button
                     onClick={() => setCurrentPage(index + 1)}
-                    className={`px-3 py-1  dark:bg-black text-gray-500 ${
+                    className={`px-3 py-1 dark:border-gray-600 dark:bg-black text-gray-500 ${
                       currentPage === index + 1 ? "bg-blue-50" : "bg-white"
                     } border`}
                   >
@@ -350,7 +349,7 @@ console.log(error);
                     setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                   }
                   disabled={currentPage === totalPages}
-                  className="px-3 py-1 text-gray-500 bg-white border rounded-r-md  dark:bg-black"
+                  className="px-3 py-1 text-gray-500 bg-white border rounded-r-md  dark:bg-black dark:border-gray-600"
                 >
                   Next
                 </button>

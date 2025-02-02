@@ -43,7 +43,7 @@ const ViewTask = ({ task, onClose }) => {
               Status:
             </strong>{" "}
             <span
-              className={`px-4 py-2 rounded-full text-white font-semibold ${
+              className={`px-4 py-2 rounded-full  font-semibold ${
                 task.status === "Complete"
                   ? "text-green-500"
                   : task.status === "Pending"

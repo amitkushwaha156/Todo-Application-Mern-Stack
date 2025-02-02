@@ -7,6 +7,8 @@ import { logout } from "../redux/UserSlice";
 import ThemeToggle from "./ThemeToggle";
 import { AiOutlineLogout } from "react-icons/ai";
 
+
+
 const NavBar = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -49,8 +51,9 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
         
-            <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-indigo-600">
+            <div className="flex-shrink-0 flex">
+            <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 mr-2" loading="lazy" src='https://avatar.iran.liara.run/public/boy' alt="Rounded avatar"/>  
+              <h1 className="text-2xl font-bold text-indigo-600 mt-1">
                 Hi! {loginUser}
               </h1>
             </div>
@@ -59,9 +62,9 @@ const NavBar = () => {
                 <ThemeToggle/>
                 <button
                   onClick={handleLogout}
-                  className="text-gray-900   dark:text-gray-100 px-3 py-2 rounded-md text-sm font-medium"
+                  className="inline-flex items-center ml-2 text-sm font-medium text-blue-600 md:ml-2 dark:text-blue-500 hover:underline"
                 >
-                 <span><AiOutlineLogout className="w-5 h-5 text-red-900" /> </span>
+                      Logout  <AiOutlineLogout className="w-3 h-3 mx-1 mt-1" />
                  
                 </button>
 

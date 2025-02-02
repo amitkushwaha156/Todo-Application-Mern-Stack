@@ -50,7 +50,8 @@ const LoginPage = () => {
   return (
     <div className="bg-white dark:bg-black min-h-screen flex items-center justify-center">
       <div className=" border border-gray-300 dark:border-gray-600  p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-gray-500 text-center mb-6">Login</h2>
+        <h2 className="text-2xl font-bold text-gray-500 text-center mb-2">Login</h2>
+        <hr className="border-gray-300 dark:border-gray-800 mb-2" />
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
@@ -59,8 +60,8 @@ const LoginPage = () => {
           {({ isSubmitting }) => (
             <Form>
               {/* Email Input */}
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm text-gray-700">Email Address</label>
+              <div className="my-4">
+                <label htmlFor="email" className="block text-sm text-gray-700  dark:text-gray-600 mb-1">Email Address</label>
                 <Field
                   id="email"
                   name="email"
@@ -75,7 +76,7 @@ const LoginPage = () => {
 
               {/* Password Input */}
               <div className="mb-6 relative">
-                <label htmlFor="password" className="block text-sm text-gray-700">Password</label>
+                <label htmlFor="password" className="block text-sm text-gray-700  dark:text-gray-600 mb-1">Password</label>
                 <Field
                   id="password"
                   name="password"
@@ -98,7 +99,7 @@ const LoginPage = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className={`w-full p-2 rounded-md mt-4 text-white ${isSubmitting ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"}`}
+                className={`w-full p-2 rounded-md mt-4 dark:bg-gray-600 dark:text-white text-white ${isSubmitting ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"}`}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Logging in..." : "Login"}
