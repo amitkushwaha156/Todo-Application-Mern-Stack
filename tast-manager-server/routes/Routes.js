@@ -47,7 +47,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id",authenticateUser, async (req, res) => {
   // console.log(req.params.id);
   try {
     let task = await Task.findById(req.params.id);

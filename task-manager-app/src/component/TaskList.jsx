@@ -55,9 +55,13 @@ console.log(error);
 
   // Delete a task
   const DeleteTask = async (id) => {
+    const token = localStorage.getItem("token"); // Get the token from localStorage or cookies
+    const headers = {
+      Authorization: `Bearer ${token}`, // Add token to the Authorization header
+    };
     setLoading(true);
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tasks/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tasks/${id}`, { headers });
       // Remove task from the state directly to avoid re-fetch
       fetchTasks();
       setTasks(tasks.filter((task) => task._id !== id));
@@ -221,9 +225,9 @@ console.log(error);
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700  dark:text-gray-400">
                 <tr>
-                  <th className="px-4 py-3 border dark:border-gray-600">SN</th>
+                  <th scope="col" className="px-4 py-3 border dark:border-gray-600">SN</th>
                   <th className="px-4 py-3 border dark:border-gray-600">Title</th>
-                  <th className="px-4 py-3 border dark:border-gray-600">Description</th>
+                  <th scope="" className="px-4 py-3 border dark:border-gray-600">Description</th>
                   <th className="px-4 py-3 border dark:border-gray-600">Due Date</th>
                   <th className="px-4 py-3 border dark:border-gray-600">Status</th>
                   <th className="px-4 py-3 border dark:border-gray-600">Action</th>
@@ -240,7 +244,7 @@ console.log(error);
                       <td className="px-4 py-4 border dark:border-gray-600 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {task.title}
                       </td>
-                      <td className="px-4 py-2 border dark:border-gray-600 text-gray-700 dark:text-gray-400">
+                      <td  className="px-4 py-2 border dark:border-gray-600 text-gray-700 dark:text-gray-400">
                         {task.description}
                       </td>
                       <td className="px-4 py-2 border dark:border-gray-600 text-gray-700 dark:text-gray-400">
