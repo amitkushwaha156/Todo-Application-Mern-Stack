@@ -31,8 +31,12 @@ const LoginPage = () => {
 
     try {
       setSubmitting(true); // Disable button during API call
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, { email, password });
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/login`,
+        { email, password }
+      );
 
+      dispatch(setUser(response.data)); //dispatch to store login user details
       // Save user data & token
       localStorage.setItem("UserName", response.data.data.name);
       localStorage.setItem("token", response.data.token);
@@ -50,7 +54,9 @@ const LoginPage = () => {
   return (
     <div className="bg-white dark:bg-black min-h-screen flex items-center justify-center">
       <div className=" border border-gray-300 dark:border-gray-600  p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-gray-500 text-center mb-2">Login</h2>
+        <h2 className="text-2xl font-bold text-gray-500 text-center mb-2">
+          Login
+        </h2>
         <hr className="border-gray-300 dark:border-gray-800 mb-2" />
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -61,7 +67,12 @@ const LoginPage = () => {
             <Form>
               {/* Email Input */}
               <div className="my-4">
-                <label htmlFor="email" className="block text-sm text-gray-700  dark:text-gray-600 mb-1">Email Address</label>
+                <label
+                  htmlFor="email"
+                  className="block text-sm text-gray-700  dark:text-gray-600 mb-1"
+                >
+                  Email Address
+                </label>
                 <Field
                   id="email"
                   name="email"
@@ -71,12 +82,21 @@ const LoginPage = () => {
          dark:focus:ring-blue-400"
                   placeholder="Enter your email"
                 />
-                <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-500 text-xs mt-1"
+                />
               </div>
 
               {/* Password Input */}
               <div className="mb-6 relative">
-                <label htmlFor="password" className="block text-sm text-gray-700  dark:text-gray-600 mb-1">Password</label>
+                <label
+                  htmlFor="password"
+                  className="block text-sm text-gray-700  dark:text-gray-600 mb-1"
+                >
+                  Password
+                </label>
                 <Field
                   id="password"
                   name="password"
@@ -86,20 +106,32 @@ const LoginPage = () => {
          dark:focus:ring-blue-400"
                   placeholder="Enter your password"
                 />
-                <ErrorMessage name="password" component="div" className="text-red-500 text-xs mt-1" />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="text-red-500 text-xs mt-1"
+                />
                 <button
                   type="button"
                   className="absolute mt-4 right-3 transform -translate-y-1/3 text-gray-500"
                   onClick={() => setPasswordVisible(!passwordVisible)}
                 >
-                  {passwordVisible ? <AiOutlineEyeInvisible className="w-5 h-5" />  : <AiOutlineEye className="w-5 h-5" />}
+                  {passwordVisible ? (
+                    <AiOutlineEyeInvisible className="w-5 h-5" />
+                  ) : (
+                    <AiOutlineEye className="w-5 h-5" />
+                  )}
                 </button>
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className={`w-full p-2 rounded-md mt-4 dark:bg-gray-600 dark:text-white text-white ${isSubmitting ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"}`}
+                className={`w-full p-2 rounded-md mt-4 dark:bg-gray-600 dark:text-white text-white ${
+                  isSubmitting
+                    ? "bg-gray-400"
+                    : "bg-indigo-600 hover:bg-indigo-700"
+                }`}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Logging in..." : "Login"}
@@ -111,7 +143,10 @@ const LoginPage = () => {
         {/* Sign Up Link */}
         <p className="mt-6 text-center text-gray-600 text-sm">
           Don't have an account?{" "}
-          <button className="text-indigo-600 hover:underline" onClick={() => navigate("/Register")}>
+          <button
+            className="text-indigo-600 hover:underline"
+            onClick={() => navigate("/Register")}
+          >
             Sign up
           </button>
         </p>

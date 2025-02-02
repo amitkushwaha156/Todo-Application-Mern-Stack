@@ -10,9 +10,11 @@ import {
   AiOutlineInfoCircle,
   AiOutlinePlus,
 } from "react-icons/ai";
+
 import NavBar from "./NavBar";
 import { debounce } from "lodash"; // Import lodash debounce
 import Loader from "./Loader";
+
 
 const TaskList = () => {
   const [loading, setLoading] = useState(false);
@@ -26,6 +28,8 @@ const TaskList = () => {
   const [limit, setLimit] = useState(10);
   const [statusFilter, setStatusFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+
+
 
   // Fetch tasks from the server
   const fetchTasks = async () => {
@@ -47,7 +51,7 @@ const TaskList = () => {
       setLoading(false);
     } catch (error) {
       // console.error("Error fetching tasks:", error);
-console.log(error);
+        //console.log(error);
       toast.error("Please Login for tasks fetching ");
       setLoading(false);
     }

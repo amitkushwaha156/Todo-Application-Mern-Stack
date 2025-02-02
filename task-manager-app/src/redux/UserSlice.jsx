@@ -14,6 +14,7 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       const { _id , name, email } = action.payload;
+
       state._id = _id || "";
       state.name = name || "";
       state.email = email || "";
@@ -28,5 +29,5 @@ export const userSlice = createSlice({
 // Action creators generated for each reducer function
 export const { setUser,logout } = userSlice.actions;
 
-// The reducer to be used in store configuration
+
 export default userSlice.reducer;
