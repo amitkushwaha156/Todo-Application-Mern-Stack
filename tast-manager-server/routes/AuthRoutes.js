@@ -1,8 +1,8 @@
 const express = require("express");
-const registerUser = require("../controller/registerUser");
+const registerUser = require("../Auth/registerUser");
 
-const UserLogin = require("../controller/login");
-const logout = require("../controller/logout");
+const UserLogin = require("../Auth/login");
+const logout = require("../Auth/logout");
 const router = express.Router();
 
 // Route for user registration

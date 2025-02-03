@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-const connectDB = require("./config/db");
+const connectDB = require("./configDB/db");
 
 // Load environment variables
 dotenv.config();
@@ -23,8 +23,8 @@ app.use(cors(corsOptions));
 app.use(express.json()); // Body parser
 
 // Routes
-app.use("/tasks", require("./routes/Routes"));
-app.use("/api", require("./routes/registerRoutes.js"));
+app.use("/tasks", require("./routes/TaskApi.js"));
+app.use("/api", require("./routes/AuthRoutes.js"));
 
 const PORT = process.env.PORT || 5000;
 

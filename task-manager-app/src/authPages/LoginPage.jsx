@@ -102,16 +102,11 @@ const LoginPage = () => {
                   name="password"
                   type={passwordVisible ? "text" : "password"}
                   className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
-         bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
-         dark:focus:ring-blue-400"
+                          bg-white text-black border-gray-300 dark:bg-gray-900 dark:text-white dark:border-gray-600
+                          dark:focus:ring-blue-400"
                   placeholder="Enter your password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="text-red-500 text-xs mt-1"
-                />
-                <button
+                /> 
+                 <button
                   type="button"
                   className="absolute mt-4 right-3 transform -translate-y-1/3 text-gray-500"
                   onClick={() => setPasswordVisible(!passwordVisible)}
@@ -122,6 +117,12 @@ const LoginPage = () => {
                     <AiOutlineEye className="w-5 h-5" />
                   )}
                 </button>
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="text-red-500 text-xs mt-1"
+                />
+              
               </div>
 
               {/* Submit Button */}
